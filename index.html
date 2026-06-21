@@ -3,23 +3,16 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Calex — Kenya's Online Marketplace</title>
+<title>Calex — Kenya's Live Marketplace</title>
 <meta name="description" content="Calex is Kenya's #1 online marketplace. Buy and sell tech, clothing, food, cars and more. Watch sellers go live and connect directly via WhatsApp.">
-<meta property="og:title" content="Calex — Kenya's Online Marketplace">
-<meta property="og:description" content="Buy and sell anything in Kenya. Tech, clothing, food, cars and more.">
-<meta property="og:type" content="website">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ===== RESET & BASE ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:'Inter',sans-serif;background:#f5f5f0;color:#1a1a1a;min-height:100vh;overflow-x:hidden}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;background:#f5f5f0;color:#1a1a1a;min-height:100vh;padding-bottom:60px}
 a{text-decoration:none;color:inherit}
 button{cursor:pointer;font-family:inherit;border:none;outline:none}
 input,select,textarea{font-family:inherit;outline:none}
-img{max-width:100%;display:block}
 ul{list-style:none}
 
 /* ===== TOKENS ===== */
@@ -29,13 +22,10 @@ ul{list-style:none}
   --green-light:#e6f7f2;
   --green-mid:#b3e8d8;
   --red:#e53e3e;
-  --amber:#f59e0b;
-  --blue:#2563eb;
   --text:#1a1a1a;
   --text2:#555;
   --text3:#888;
   --bg:#f5f5f0;
-  --card:#fff;
   --border:#e2e2dc;
   --radius:12px;
   --radius-sm:8px;
@@ -50,713 +40,369 @@ ul{list-style:none}
 .btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text)}.btn-outline:hover{border-color:var(--green);color:var(--green)}
 .btn-white{background:#fff;color:var(--green);border:1.5px solid #fff}.btn-white:hover{background:var(--green-light)}
 .badge{display:inline-flex;align-items:center;gap:4px;padding:3px 8px;border-radius:20px;font-size:11px;font-weight:500}
-.badge-live{background:#fee2e2;color:#b91c1c}
 .badge-new{background:var(--green-light);color:var(--green-dark)}
-.badge-hot{background:#fef3c7;color:#92400e}
-.badge-verified{background:#dbeafe;color:#1d4ed8}
-.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
 .dot-live{width:8px;height:8px;border-radius:50%;background:#e53e3e;animation:pulse 1.4s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
 .section-title{font-size:20px;font-weight:600;margin-bottom:4px}
 .section-sub{font-size:14px;color:var(--text2);margin-bottom:20px}
 .grid-4{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-.grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.grid-2{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
-@media(max-width:900px){.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.grid-4{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:1fr}.grid-2{grid-template-columns:1fr}}
-.tag{display:inline-block;padding:4px 10px;border-radius:20px;font-size:12px;background:var(--green-light);color:var(--green-dark);font-weight:500}
+@media(max-width:900px){.grid-4{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.grid-4{grid-template-columns:1fr}}
 
 /* ===== HEADER ===== */
 .header{position:sticky;top:0;z-index:100;background:#fff;border-bottom:1px solid var(--border);box-shadow:var(--shadow)}
 .header-inner{display:flex;align-items:center;gap:12px;padding:12px 16px;max-width:1200px;margin:0 auto}
-.logo{font-size:24px;font-weight:700;color:var(--green);letter-spacing:-1px;white-space:nowrap}
+.logo{font-size:24px;font-weight:700;color:var(--green);letter-spacing:-1px}
 .logo span{color:var(--text)}
 .search-wrap{flex:1;position:relative;max-width:520px}
-.search-wrap input{width:100%;padding:10px 16px 10px 42px;border:1.5px solid var(--border);border-radius:24px;font-size:14px;background:#f9f9f7;transition:.2s}
+.search-wrap input{width:100%;padding:10px 16px 10px 16px;border:1.5px solid var(--border);border-radius:24px;font-size:14px;background:#f9f9f7;transition:.2s}
 .search-wrap input:focus{border-color:var(--green);background:#fff}
-.search-wrap svg{position:absolute;left:14px;top:50%;transform:translateY(-50%);color:var(--text3)}
-.search-btn{position:absolute;right:6px;top:50%;transform:translateY(-50%);background:var(--green);color:#fff;border:none;padding:6px 14px;border-radius:20px;font-size:13px;font-weight:500;cursor:pointer}
-.header-actions{display:flex;align-items:center;gap:8px;flex-shrink:0}
-.icon-btn{width:38px;height:38px;border-radius:50%;background:var(--bg);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;position:relative}
-.icon-btn:hover{border-color:var(--green)}
-.notif-dot{position:absolute;top:6px;right:6px;width:7px;height:7px;border-radius:50%;background:var(--red);border:1.5px solid #fff}
-@media(max-width:600px){.header-actions .btn-text{display:none}.logo{font-size:20px}}
-
-/* ===== NAV BAR ===== */
-.nav-bar{background:#fff;border-bottom:1px solid var(--border);overflow-x:auto;scrollbar-width:none}
-.nav-bar::-webkit-scrollbar{display:none}
-.nav-inner{display:flex;gap:4px;padding:0 16px;max-width:1200px;margin:0 auto}
-.nav-tab{display:flex;align-items:center;gap:6px;padding:10px 14px;font-size:13px;font-weight:500;color:var(--text2);white-space:nowrap;border-bottom:2px solid transparent;cursor:pointer;transition:.2s}
-.nav-tab:hover{color:var(--green)}
-.nav-tab.active{color:var(--green);border-bottom-color:var(--green)}
-.nav-tab svg{flex-shrink:0}
+.header-actions{display:flex;align-items:center;gap:8px}
+@media(max-width:600px){.btn-text{display:none}}
 
 /* ===== HERO ===== */
-.hero{background:linear-gradient(135deg,#0e7a60 0%,#16a37f 50%,#1db892 100%);color:#fff;padding:48px 16px;text-align:center;position:relative;overflow:hidden}
-.hero::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E") repeat;pointer-events:none}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);padding:6px 14px;border-radius:20px;font-size:13px;margin-bottom:20px}
-.hero h1{font-size:clamp(28px,5vw,52px);font-weight:700;line-height:1.15;margin-bottom:14px;letter-spacing:-1px}
-.hero h1 span{color:#a7f3d0}
-.hero p{font-size:16px;opacity:.9;max-width:520px;margin:0 auto 28px;line-height:1.6}
-.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:36px}
-.hero-stats{display:flex;gap:32px;justify-content:center;flex-wrap:wrap}
-.hero-stat{text-align:center}
-.hero-stat strong{display:block;font-size:24px;font-weight:700}
-.hero-stat span{font-size:12px;opacity:.8}
-
-/* ===== LIVE BANNER ===== */
-.live-banner{background:#fff7ed;border-top:3px solid #f59e0b;border-bottom:1px solid #fde68a}
-.live-inner{max-width:1200px;margin:0 auto;padding:10px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.live-pill{display:flex;align-items:center;gap:6px;background:#fee2e2;border:1px solid #fca5a5;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;color:#b91c1c;white-space:nowrap}
-.live-sellers{display:flex;gap:8px;flex:1;flex-wrap:wrap}
-.live-seller-chip{display:flex;align-items:center;gap:6px;background:#fff;border:1px solid var(--border);padding:5px 12px;border-radius:20px;font-size:12px;cursor:pointer;transition:.2s}
-.live-seller-chip:hover{border-color:var(--green);color:var(--green)}
-.live-seller-chip img{width:20px;height:20px;border-radius:50%;background:var(--green-light);object-fit:cover}
-.live-count{font-size:12px;color:var(--text2);white-space:nowrap}
-.live-watch-all{margin-left:auto;background:var(--red);color:#fff;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:500;cursor:pointer;border:none;white-space:nowrap}
-
-/* ===== CATEGORIES ===== */
-.categories{padding:32px 16px}
-.cat-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
-@media(max-width:900px){.cat-grid{grid-template-columns:repeat(4,1fr)}}
-@media(max-width:480px){.cat-grid{grid-template-columns:repeat(3,1fr)}}
-.cat-card{background:#fff;border:1.5px solid var(--border);border-radius:var(--radius);padding:16px 8px;text-align:center;cursor:pointer;transition:.2s}
-.cat-card:hover,.cat-card.active{border-color:var(--green);background:var(--green-light);transform:translateY(-2px)}
-.cat-icon{font-size:28px;margin-bottom:8px;display:block}
-.cat-label{font-size:12px;font-weight:500;color:var(--text)}
-.cat-count{font-size:10px;color:var(--text3);margin-top:2px}
+.hero{background:linear-gradient(135deg,#0e7a60 0%,#16a37f 50%,#1db892 100%);color:#fff;padding:48px 16px;text-align:center}
+.hero h1{font-size:clamp(28px,5vw,42px);font-weight:700;margin-bottom:12px;letter-spacing:-1px}
+.hero p{font-size:15px;opacity:.9;max-width:520px;margin:0 auto 24px;line-height:1.6}
+.hero-btns{display:flex;gap:12px;justify-content:center}
 
 /* ===== PRODUCT GRID ===== */
-.products{padding:0 16px 32px}
-.section-header{display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:20px}
-.see-all{font-size:13px;color:var(--green);font-weight:500;cursor:pointer}
-.prod-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.2s;cursor:pointer;position:relative}
-.prod-card:hover{box-shadow:var(--shadow-md);transform:translateY(-3px);border-color:var(--green-mid)}
-.prod-img{aspect-ratio:4/3;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:48px;position:relative;overflow:hidden}
-.prod-img-real{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
-.prod-badges{position:absolute;top:8px;left:8px;display:flex;gap:4px;flex-wrap:wrap}
-.prod-fav{position:absolute;top:8px;right:8px;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;border:none;cursor:pointer;transition:.2s}
-.prod-fav:hover{background:#fff;color:var(--red)}
-.prod-fav.active{color:var(--red)}
+.products{padding:32px 16px}
+.prod-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:.2s;cursor:pointer}
+.prod-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+.prod-img{aspect-ratio:4/3;background:#f9f9f7;display:flex;align-items:center;justify-content:center;font-size:40px}
 .prod-info{padding:12px}
-.prod-name{font-size:14px;font-weight:500;margin-bottom:4px;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
-.prod-meta{display:flex;align-items:center;gap:4px;font-size:12px;color:var(--text3);margin-bottom:6px}
-.prod-price{font-size:18px;font-weight:700;color:var(--green);margin-bottom:10px}
-.prod-price .old{font-size:13px;font-weight:400;color:var(--text3);text-decoration:line-through;margin-left:6px}
+.prod-name{font-size:14px;font-weight:500;margin-bottom:4px;line-height:1.4}
+.prod-meta{font-size:12px;color:var(--text3);margin-bottom:6px}
+.prod-price{font-size:16px;font-weight:700;color:var(--green);margin-bottom:10px}
 .prod-actions{display:flex;gap:6px}
-.prod-actions button{flex:1;padding:7px;border-radius:var(--radius-sm);font-size:12px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:4px;transition:.2s}
-.btn-wa{background:#25d366;color:#fff}.btn-wa:hover{background:#1da851}
-.btn-call{background:var(--bg);color:var(--text);border:1px solid var(--border)}.btn-call:hover{border-color:var(--green)}
-
-/* ===== LIVE SECTION ===== */
-.live-section{padding:32px 16px;background:#fff;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:8px}
-.live-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media(max-width:700px){.live-cards{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:400px){.live-cards{grid-template-columns:1fr}}
-.live-card{background:var(--bg);border-radius:var(--radius);overflow:hidden;cursor:pointer;transition:.2s;border:1px solid var(--border)}
-.live-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
-.live-thumb{aspect-ratio:16/9;background:linear-gradient(135deg,#1a1a2e,#16213e,#0f3460);position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.live-thumb-icon{font-size:40px}
-.live-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.7) 0%,transparent 50%)}
-.live-badge{position:absolute;top:10px;left:10px;display:flex;align-items:center;gap:5px;background:var(--red);color:#fff;padding:4px 10px;border-radius:20px;font-size:11px;font-weight:600}
-.live-viewers{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.6);color:#fff;padding:3px 8px;border-radius:20px;font-size:11px}
-.live-seller-info{position:absolute;bottom:10px;left:10px;right:10px;color:#fff}
-.live-seller-name{font-size:13px;font-weight:600}
-.live-seller-title{font-size:11px;opacity:.8}
-.live-card-footer{padding:10px 12px;display:flex;align-items:center;justify-content:space-between}
-.live-cat{font-size:11px;color:var(--text3)}
-.live-join{background:var(--green);color:#fff;padding:5px 12px;border-radius:20px;font-size:12px;font-weight:500;border:none;cursor:pointer}
-
-/* ===== SELLER SECTION ===== */
-.sellers-section{padding:32px 16px}
-.seller-cards{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
-@media(max-width:900px){.seller-cards{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:480px){.seller-cards{grid-template-columns:repeat(2,1fr)}}
-.seller-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;text-align:center;transition:.2s;cursor:pointer}
-.seller-card:hover{box-shadow:var(--shadow-md);border-color:var(--green-mid)}
-.seller-avatar{width:64px;height:64px;border-radius:50%;background:var(--green-light);margin:0 auto 10px;display:flex;align-items:center;justify-content:center;font-size:26px;border:2px solid var(--green-mid)}
-.seller-name{font-size:14px;font-weight:600;margin-bottom:4px}
-.seller-cat{font-size:12px;color:var(--text3);margin-bottom:8px}
-.seller-stats{display:flex;justify-content:center;gap:16px;font-size:11px;color:var(--text2);margin-bottom:10px}
-.seller-stats strong{display:block;font-size:14px;font-weight:600;color:var(--text)}
-.seller-follow{width:100%;padding:7px;border:1.5px solid var(--green);color:var(--green);background:transparent;border-radius:var(--radius-sm);font-size:12px;font-weight:500;cursor:pointer;transition:.2s}
-.seller-follow:hover,.seller-follow.following{background:var(--green);color:#fff}
-
-/* ===== TESTIMONIALS ===== */
-.testimonials{padding:48px 16px;background:var(--green);color:#fff}
-.testimonials .section-title{color:#fff}
-.testimonials .section-sub{color:rgba(255,255,255,.8)}
-.testi-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-@media(max-width:700px){.testi-grid{grid-template-columns:1fr}}
-.testi-card{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.2);border-radius:var(--radius);padding:20px}
-.testi-stars{color:#fbbf24;margin-bottom:10px;font-size:14px}
-.testi-text{font-size:14px;line-height:1.7;opacity:.95;margin-bottom:16px}
-.testi-author{display:flex;align-items:center;gap:10px}
-.testi-avatar{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:16px}
-.testi-name{font-size:13px;font-weight:500}
-.testi-loc{font-size:11px;opacity:.7}
-
-/* ===== HOW IT WORKS ===== */
-.how{padding:48px 16px}
-.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:8px}
-@media(max-width:700px){.how-steps{grid-template-columns:repeat(2,1fr)}}
-.how-step{text-align:center}
-.how-num{width:52px;height:52px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:700;margin:0 auto 14px}
-.how-step h3{font-size:14px;font-weight:600;margin-bottom:6px}
-.how-step p{font-size:13px;color:var(--text2);line-height:1.6}
-
-/* ===== CTA BANNER ===== */
-.cta-banner{background:linear-gradient(135deg,#0e7a60,#16a37f);color:#fff;padding:48px 16px;text-align:center}
-.cta-banner h2{font-size:clamp(22px,4vw,36px);font-weight:700;margin-bottom:10px;letter-spacing:-0.5px}
-.cta-banner p{font-size:15px;opacity:.9;margin-bottom:28px;max-width:480px;margin-left:auto;margin-right:auto}
-.cta-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+.prod-actions .btn{flex:1;padding:6px;font-size:12px;justify-content:center;border-radius:var(--radius-sm)}
+.btn-wa{background:#25d366;color:#fff}
 
 /* ===== FOOTER ===== */
-.footer{background:#111;color:#ccc;padding:48px 16px 24px}
-.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;margin-bottom:40px}
-@media(max-width:700px){.footer-grid{grid-template-columns:1fr 1fr}}
-@media(max-width:400px){.footer-grid{grid-template-columns:1fr}}
-.footer-brand .logo{font-size:28px;margin-bottom:12px}
-.footer-brand p{font-size:13px;line-height:1.7;max-width:260px;color:#888}
-.footer-socials{display:flex;gap:10px;margin-top:16px}
-.social-btn{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;font-size:16px}
-.social-btn:hover{background:var(--green);color:#fff}
-.footer-col h4{font-size:13px;font-weight:600;color:#fff;margin-bottom:14px}
-.footer-col ul li{margin-bottom:8px}
-.footer-col ul li a{font-size:13px;color:#888;transition:.2s}
-.footer-col ul li a:hover{color:var(--green)}
-.footer-bottom{border-top:1px solid #222;padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:gap;gap:10px}
-.footer-bottom p{font-size:12px;color:#555}
-.payment-badges{display:flex;gap:8px;align-items:center}
-.pay-badge{background:rgba(255,255,255,.05);border:1px solid #333;border-radius:6px;padding:4px 10px;font-size:11px;color:#888}
+.footer{background:#111;color:#888;padding:32px 16px;text-align:center;margin-top:48px;font-size:13px}
 
 /* ===== MODALS ===== */
 .modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:999;align-items:center;justify-content:center;padding:16px}
 .modal-overlay.open{display:flex}
-.modal{background:#fff;border-radius:16px;width:100%;max-width:480px;overflow:hidden;animation:modalIn .2s ease}
-@keyframes modalIn{from{opacity:0;transform:scale(.95)}to{opacity:1;transform:scale(1)}}
-.modal-header{padding:20px 24px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
-.modal-header h2{font-size:18px;font-weight:600}
-.modal-close{width:32px;height:32px;border-radius:50%;background:var(--bg);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:18px;color:var(--text2)}
-.modal-body{padding:24px}
-.form-group{margin-bottom:16px}
-.form-label{display:block;font-size:13px;font-weight:500;margin-bottom:6px;color:var(--text)}
-.form-input{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;transition:.2s}
+.modal{background:#fff;border-radius:16px;width:100%;max-width:420px;overflow:hidden}
+.modal-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.modal-header h2{font-size:16px;font-weight:600}
+.modal-close{background:none;font-size:20px;color:var(--text3)}
+.modal-body{padding:20px}
+.form-group{margin-bottom:14px}
+.form-label{display:block;font-size:12px;font-weight:500;margin-bottom:4px}
+.form-input,.form-select{width:100%;padding:10px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px}
 .form-input:focus{border-color:var(--green)}
-.form-select{width:100%;padding:10px 14px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;background:#fff;cursor:pointer}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.modal-footer{padding:16px 24px;border-top:1px solid var(--border);display:flex;gap:10px}
-.modal-footer .btn{flex:1;justify-content:center}
-.tabs{display:flex;gap:0;border-bottom:1px solid var(--border);margin-bottom:20px}
-.tab{flex:1;padding:10px;text-align:center;font-size:14px;font-weight:500;color:var(--text2);cursor:pointer;border-bottom:2px solid transparent;transition:.2s}
-.tab.active{color:var(--green);border-bottom-color:var(--green)}
-
-/* ===== PRODUCT MODAL ===== */
-.prod-modal-img{aspect-ratio:16/9;background:var(--bg);display:flex;align-items:center;justify-content:center;font-size:64px;border-radius:var(--radius-sm);margin-bottom:16px}
-.prod-modal-price{font-size:28px;font-weight:700;color:var(--green);margin-bottom:8px}
-.prod-modal-seller{display:flex;align-items:center;gap:10px;padding:12px;background:var(--bg);border-radius:var(--radius-sm);margin-bottom:16px}
-.seller-mini-avatar{width:40px;height:40px;border-radius:50%;background:var(--green-light);display:flex;align-items:center;justify-content:center;font-size:18px}
-.prod-modal-actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
-.prod-modal-actions button{padding:12px;border-radius:var(--radius-sm);font-size:14px;font-weight:500;display:flex;align-items:center;justify-content:center;gap:8px}
-
-/* ===== SELL MODAL ===== */
-.upload-zone{border:2px dashed var(--border);border-radius:var(--radius-sm);padding:32px;text-align:center;cursor:pointer;transition:.2s;margin-bottom:16px}
-.upload-zone:hover{border-color:var(--green);background:var(--green-light)}
-.upload-zone p{font-size:13px;color:var(--text2);margin-top:8px}
-
-/* ===== LIVE MODAL ===== */
-.live-video-container{background:#000;aspect-ratio:16/9;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:16px;position:relative;overflow:hidden}
-.live-video-bg{position:absolute;inset:0;background:linear-gradient(135deg,#0d1117,#1a1a2e);display:flex;align-items:center;justify-content:center;font-size:80px}
-.live-badge-large{position:absolute;top:12px;left:12px;display:flex;align-items:center;gap:6px;background:var(--red);color:#fff;padding:6px 14px;border-radius:20px;font-size:12px;font-weight:700}
-.live-chat{height:160px;overflow-y:auto;background:var(--bg);border-radius:var(--radius-sm);padding:12px;margin-bottom:12px}
-.chat-msg{font-size:12px;margin-bottom:6px;line-height:1.5}
-.chat-msg .user{font-weight:600;color:var(--green)}
-.chat-input-row{display:flex;gap:8px}
-.chat-input-row input{flex:1;padding:8px 12px;border:1.5px solid var(--border);border-radius:20px;font-size:13px}
-.chat-send{background:var(--green);color:#fff;border:none;padding:8px 16px;border-radius:20px;font-size:13px;cursor:pointer}
 
 /* ===== TOAST ===== */
-.toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:#1a1a1a;color:#fff;padding:12px 20px;border-radius:var(--radius-sm);font-size:13px;font-weight:500;display:flex;align-items:center;gap:8px;transform:translateY(80px);opacity:0;transition:.3s;max-width:320px;box-shadow:var(--shadow-md)}
-.toast.show{transform:translateY(0);opacity:1}
-.toast.success{background:var(--green)}
-.toast.error{background:var(--red)}
+.toast{position:fixed;bottom:24px;right:24px;z-index:9999;background:#1a1a1a;color:#fff;padding:12px 20px;border-radius:var(--radius-sm);font-size:13px;transform:translateY(80px);opacity:0;transition:.3s}
+.toast.show{transform:translateY(0);opacity:1;background:var(--green)}
 
-/* ===== MOBILE BOTTOM NAV ===== */
-.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);z-index:200;padding:6px 0 env(safe-area-inset-bottom)}
-@media(max-width:600px){.mobile-nav{display:flex}.body-pad{padding-bottom:64px}}
-.mob-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px;cursor:pointer;color:var(--text3);transition:.2s}
+/* ===== MOBILE NAVIGATION ===== */
+.mobile-nav{display:none;position:fixed;bottom:0;left:0;right:0;background:#fff;border-top:1px solid var(--border);z-index:200;padding:8px 0}
+@media(max-width:600px){.mobile-nav{display:flex}}
+.mob-nav-item{flex:1;display:flex;flex-direction:column;align-items:center;font-size:11px;color:var(--text3);background:none}
 .mob-nav-item.active{color:var(--green)}
-.mob-nav-item svg{width:22px;height:22px}
-.mob-nav-item span{font-size:10px;font-weight:500}
-.mob-sell-btn{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center}
-.mob-sell-btn .sell-circle{width:46px;height:46px;border-radius:50%;background:var(--green);color:#fff;display:flex;align-items:center;justify-content:center;margin-bottom:2px;box-shadow:0 4px 12px rgba(22,163,127,.4)}
 </style>
 </head>
-<body class="body-pad">
+<body>
 
-<!-- ===== HEADER ===== -->
 <header class="header">
   <div class="header-inner">
-    <div class="logo" onclick="scrollTo(0,0)" style="cursor:pointer">Calex<span>.</span></div>
+    <div class="logo" onclick="window.location.reload()" style="cursor:pointer">Calex<span>.</span></div>
     <div class="search-wrap">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-      <input type="text" id="searchInput" placeholder="Search products, sellers, categories..." onkeypress="if(event.key==='Enter')doSearch()">
-      <button class="search-btn" onclick="doSearch()">Search</button>
+      <input type="text" id="searchInput" placeholder="Search product listings...">
     </div>
     <div class="header-actions">
-      <button class="icon-btn" onclick="openModal('notifModal')" aria-label="Notifications">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-        <span class="notif-dot"></span>
-      </button>
-      <button class="icon-btn" onclick="openModal('wishlistModal')" aria-label="Saved items">
-        <svg width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-      </button>
-      <button class="btn btn-outline btn-text" onclick="openModal('loginModal')">Log in</button>
-      <button class="btn btn-green" onclick="openModal('sellModal')">
-        <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-        Sell now
-      </button>
+      <button class="btn btn-outline btn-text" id="loginHeaderBtn" onclick="openModal('loginModal')">Log in</button>
+      <button class="btn btn-green" onclick="openModal('sellModal')">Sell now</button>
     </div>
   </div>
 </header>
 
-<!-- ===== CATEGORY NAV ===== -->
-<nav class="nav-bar" aria-label="Category navigation">
-  <div class="nav-inner">
-    <button class="nav-tab active" onclick="filterCat('all',this)">
-      <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-      All
-    </button>
-    <button class="nav-tab" onclick="filterCat('tech',this)">📱 Tech</button>
-    <button class="nav-tab" onclick="filterCat('clothing',this)">👗 Clothing</button>
-    <button class="nav-tab" onclick="filterCat('food',this)">🍲 Food & Restaurants</button>
-    <button class="nav-tab" onclick="filterCat('cars',this)">🚗 Cars</button>
-    <button class="nav-tab" onclick="filterCat('property',this)">🏠 Property</button>
-    <button class="nav-tab" onclick="filterCat('services',this)">💼 Services</button>
-    <button class="nav-tab" onclick="openModal('liveModal')">
-      <span class="dot-live"></span> Live Now
-    </button>
-  </div>
-</nav>
-
-<!-- ===== LIVE BANNER ===== -->
-<div class="live-banner">
-  <div class="live-inner">
-    <div class="live-pill"><span class="dot-live"></span>LIVE</div>
-    <div class="live-sellers">
-      <div class="live-seller-chip" onclick="openLiveStream('TechHub Nairobi','📱','Tech & Gadgets',1240)">
-        <span>📱</span> TechHub Nairobi
-      </div>
-      <div class="live-seller-chip" onclick="openLiveStream('Mama Ngina Kitchen','🍲','Food & Meals',389)">
-        <span>🍲</span> Mama Ngina Kitchen
-      </div>
-      <div class="live-seller-chip" onclick="openLiveStream('Fatuma Fashion','👗','Clothing & Accessories',701)">
-        <span>👗</span> Fatuma Fashion
-      </div>
-      <div class="live-seller-chip" onclick="openLiveStream('AutoDeals KE','🚗','Cars & Motorbikes',215)">
-        <span>🚗</span> AutoDeals KE
-      </div>
-    </div>
-    <span class="live-count">4 sellers live</span>
-    <button class="live-watch-all" onclick="openModal('liveModal')">Watch all →</button>
-  </div>
-</div>
-
-<!-- ===== HERO ===== -->
-<section class="hero" aria-label="Hero section">
-  <div class="hero-badge"><span class="dot-live"></span> Kenya's fastest growing marketplace</div>
-  <h1>Buy & sell anything<br>in <span>Kenya</span></h1>
-  <p>Connect directly with thousands of sellers across Nairobi, Mombasa, Kisumu and beyond. Watch sellers go live and discover great deals every day.</p>
+<section class="hero">
+  <h1>Buy & sell anything instantly in Kenya</h1>
+  <p>Connect directly with trusted local sellers. View live items, check accurate prices, and trade easily over WhatsApp.</p>
   <div class="hero-btns">
-    <button class="btn btn-white" onclick="openModal('sellModal')">
-      <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-      Start selling free
-    </button>
-    <button class="btn" style="background:rgba(255,255,255,.15);color:#fff;border:1.5px solid rgba(255,255,255,.3)" onclick="openModal('liveModal')">
-      ▶ Watch live sellers
-    </button>
-  </div>
-  <div class="hero-stats">
-    <div class="hero-stat"><strong>50,000+</strong><span>Active listings</span></div>
-    <div class="hero-stat"><strong>12,000+</strong><span>Verified sellers</span></div>
-    <div class="hero-stat"><strong>8 cities</strong><span>Across Kenya</span></div>
-    <div class="hero-stat"><strong>Free</strong><span>To list products</span></div>
+    <button class="btn btn-white" onclick="openModal('sellModal')">Start selling free</button>
   </div>
 </section>
 
-<!-- ===== CATEGORIES ===== -->
-<section class="categories" aria-label="Browse categories">
+<section class="products">
   <div class="container">
-    <div class="section-header">
-      <div>
-        <h2 class="section-title">Browse by category</h2>
-        <p class="section-sub">Find exactly what you're looking for</p>
-      </div>
-    </div>
-    <div class="cat-grid">
-      <div class="cat-card" onclick="filterCat('tech',null)"><span class="cat-icon">📱</span><div class="cat-label">Tech</div><div class="cat-count">8,420 items</div></div>
-      <div class="cat-card" onclick="filterCat('clothing',null)"><span class="cat-icon">👗</span><div class="cat-label">Clothing</div><div class="cat-count">12,300 items</div></div>
-      <div class="cat-card" onclick="filterCat('food',null)"><span class="cat-icon">🍲</span><div class="cat-label">Food</div><div class="cat-count">3,150 items</div></div>
-      <div class="cat-card" onclick="filterCat('cars',null)"><span class="cat-icon">🚗</span><div class="cat-label">Cars</div><div class="cat-count">5,680 items</div></div>
-      <div class="cat-card" onclick="filterCat('property',null)"><span class="cat-icon">🏠</span><div class="cat-label">Property</div><div class="cat-count">2,890 items</div></div>
-      <div class="cat-card" onclick="filterCat('services',null)"><span class="cat-icon">💼</span><div class="cat-label">Services</div><div class="cat-count">4,100 items</div></div>
-      <div class="cat-card" onclick="filterCat('other',null)"><span class="cat-icon">🛒</span><div class="cat-label">Other</div><div class="cat-count">9,600 items</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== LIVE SECTION ===== -->
-<section class="live-section" aria-label="Live sellers">
-  <div class="container">
-    <div class="section-header">
-      <div>
-        <h2 class="section-title">🔴 Live right now</h2>
-        <p class="section-sub">Watch sellers showcase their products in real time</p>
-      </div>
-      <span class="see-all" onclick="openModal('liveModal')">See all live →</span>
-    </div>
-    <div class="live-cards">
-      <div class="live-card" onclick="openLiveStream('TechHub Nairobi','📱','Tech & Gadgets',1240)">
-        <div class="live-thumb">
-          <div class="live-thumb-icon">📱</div>
-          <div class="live-overlay"></div>
-          <div class="live-badge"><span class="dot-live"></span> LIVE</div>
-          <div class="live-viewers">👁 1,240</div>
-          <div class="live-seller-info">
-            <div class="live-seller-name">TechHub Nairobi</div>
-            <div class="live-seller-title">Showing: Samsung Galaxy A54 — KES 32,000</div>
-          </div>
-        </div>
-        <div class="live-card-footer">
-          <span class="live-cat">📱 Tech & Gadgets</span>
-          <button class="live-join">Join →</button>
-        </div>
-      </div>
-      <div class="live-card" onclick="openLiveStream('Mama Ngina Kitchen','🍲','Food & Meals',389)">
-        <div class="live-thumb" style="background:linear-gradient(135deg,#1a0a00,#3d1a00,#7a2f00)">
-          <div class="live-thumb-icon">🍲</div>
-          <div class="live-overlay"></div>
-          <div class="live-badge"><span class="dot-live"></span> LIVE</div>
-          <div class="live-viewers">👁 389</div>
-          <div class="live-seller-info">
-            <div class="live-seller-name">Mama Ngina Kitchen</div>
-            <div class="live-seller-title">Cooking: Pilau & Kachumbari — KES 350</div>
-          </div>
-        </div>
-        <div class="live-card-footer">
-          <span class="live-cat">🍲 Food & Meals</span>
-          <button class="live-join">Join →</button>
-        </div>
-      </div>
-      <div class="live-card" onclick="openLiveStream('Fatuma Fashion','👗','Clothing',701)">
-        <div class="live-thumb" style="background:linear-gradient(135deg,#1a001a,#3d003d,#7a007a)">
-          <div class="live-thumb-icon">👗</div>
-          <div class="live-overlay"></div>
-          <div class="live-badge"><span class="dot-live"></span> LIVE</div>
-          <div class="live-viewers">👁 701</div>
-          <div class="live-seller-info">
-            <div class="live-seller-name">Fatuma Fashion</div>
-            <div class="live-seller-title">New Ankara collection — From KES 1,500</div>
-          </div>
-        </div>
-        <div class="live-card-footer">
-          <span class="live-cat">👗 Clothing</span>
-          <button class="live-join">Join →</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== PRODUCTS SECTION ===== -->
-<section class="products" id="productsSection">
-  <div class="container">
-    <div class="section-header">
-      <div>
-        <h2 class="section-title">Trending Listings</h2>
-        <p class="section-sub">Latest items from verified sellers today</p>
-      </div>
-    </div>
+    <h2 class="section-title">Trending Listings</h2>
+    <p class="section-sub">Live structural feed straight from our Firestore database</p>
     
     <div class="grid-4" id="productsGrid">
-      <!-- Product 1 -->
-      <div class="prod-card" onclick="openProduct('iPhone 13 Pro Max', 'KES 75,000', '📱 TechHub Nairobi', 'Clean, 256GB, True Tone active, 88% battery health.')">
-        <div class="prod-img">📱</div>
-        <div class="prod-badges"><span class="badge badge-new">New</span></div>
-        <div class="prod-info">
-          <div class="prod-name">iPhone 13 Pro Max — 256GB Local Used</div>
-          <div class="prod-meta">📍 Nairobi • ⭐ 4.9</div>
-          <div class="prod-price">KES 75,000</div>
-          <div class="prod-actions">
-            <a href="https://wa.me/254700000000?text=Hi,%20I'm%20interested%20in%20the%20iPhone%2013" class="btn btn-wa" onclick="event.stopPropagation()">WhatsApp</a>
-            <button class="btn btn-call" onclick="event.stopPropagation(); alert('Call: 0700000000')">Call</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 2 -->
-      <div class="prod-card" onclick="openProduct('Nike Air Force 1', 'KES 3,500', '👗 Fatuma Fashion', 'Premium quality streetwear sneakers, sizes 38-44 available.')">
-        <div class="prod-img" style="background:#f0e6ff;">👟</div>
-        <div class="prod-badges"><span class="badge badge-hot">Hot</span></div>
-        <div class="prod-info">
-          <div class="prod-name">Nike Air Force 1 — Premium Streetwear</div>
-          <div class="prod-meta">📍 Mombasa • ⭐ 4.7</div>
-          <div class="prod-price">KES 3,500</div>
-          <div class="prod-actions">
-            <a href="https://wa.me/254700000000?text=Hi,%20I'm%20interested%20in%20the%20Nike%20Shoes" class="btn btn-wa" onclick="event.stopPropagation()">WhatsApp</a>
-            <button class="btn btn-call" onclick="event.stopPropagation(); alert('Call: 0700000000')">Call</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 3 -->
-      <div class="prod-card" onclick="openProduct('Subaru Impreza 2015', 'KES 1,250,000', '🚗 AutoDeals KE', 'Super clean, automatic, well maintained, low mileage.')">
-        <div class="prod-img" style="background:#e6f2ff;">🚗</div>
-        <div class="prod-info">
-          <div class="prod-name">Subaru Impreza G4 2015 — Mint Condition</div>
-          <div class="prod-meta">📍 Kisumu • ⭐ 5.0</div>
-          <div class="prod-price">KES 1,250,000</div>
-          <div class="prod-actions">
-            <a href="https://wa.me/254700000000?text=Hi,%20I'm%20interested%20in%20the%20Subaru" class="btn btn-wa" onclick="event.stopPropagation()">WhatsApp</a>
-            <button class="btn btn-call" onclick="event.stopPropagation(); alert('Call: 0700000000')">Call</button>
-          </div>
-        </div>
-      </div>
-
-      <!-- Product 4 -->
-      <div class="prod-card" onclick="openProduct('Swahili Pilau Full Pack', 'KES 350', '🍲 Mama Ngina Kitchen', 'Served hot with beef, kachumbari, and a banana.')">
-        <div class="prod-img" style="background:#fff3e6;">🍲</div>
-        <div class="prod-info">
-          <div class="prod-name">Swahili Pilau Pack — Beef & Kachumbari</div>
-          <div class="prod-meta">📍 Nairobi • ⭐ 4.8</div>
-          <div class="prod-price">KES 350</div>
-          <div class="prod-actions">
-            <a href="https://wa.me/254700000000?text=Hi,%20I'm%20interested%20in%20the%20Pilau" class="btn btn-wa" onclick="event.stopPropagation()">WhatsApp</a>
-            <button class="btn btn-call" onclick="event.stopPropagation(); alert('Call: 0700000000')">Call</button>
-          </div>
-        </div>
-      </div>
+      <p style="color:var(--text3); grid-column: 1/-1; text-align:center;">Connecting to cloud pipeline...</p>
     </div>
   </div>
 </section>
 
-<!-- ===== HOW IT WORKS ===== -->
-<section class="how">
-  <div class="container">
-    <div style="text-align:center; margin-bottom:32px;">
-      <h2 class="section-title">How Calex Works</h2>
-      <p class="section-sub">Simple, direct, and completely free trading</p>
-    </div>
-    <div class="how-steps">
-      <div class="how-step">
-        <div class="how-num">1</div>
-        <h3>Create Account</h3>
-        <p>Sign up instantly with your phone number or email details.</p>
-      </div>
-      <div class="how-step">
-        <div class="how-num">2</div>
-        <h3>Post Your Item</h3>
-        <p>Take clear photos, add your custom price, and list it for free.</p>
-      </div>
-      <div class="how-step">
-        <div class="how-num">3</div>
-        <h3>Go Live (Optional)</h3>
-        <p>Broadcast video live to showcase your items in real-time.</p>
-      </div>
-      <div class="how-step">
-        <div class="how-num">4</div>
-        <h3>Close the Deal</h3>
-        <p>Buyers connect instantly via WhatsApp or a direct call.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ===== FOOTER ===== -->
 <footer class="footer">
-  <div class="footer-grid container">
-    <div class="footer-brand">
-      <div class="logo">Calex<span>.</span></div>
-      <p>Kenya's premier modern real-time live marketplace connecting authentic local buyers and sellers.</p>
-    </div>
-    <div class="footer-col">
-      <h4>Categories</h4>
-      <ul>
-        <li><a href="#" onclick="filterCat('tech')">Electronics & Tech</a></li>
-        <li><a href="#" onclick="filterCat('clothing')">Fashion & Clothing</a></li>
-        <li><a href="#" onclick="filterCat('food')">Food & Kitchens</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Support</h4>
-      <ul>
-        <li><a href="#">Safety Tips</a></li>
-        <li><a href="#">Contact Us</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Legal</h4>
-      <ul>
-        <li><a href="#">Terms of Use</a></li>
-        <li><a href="#">Privacy Policy</a></li>
-      </ul>
-    </div>
-  </div>
-  <div class="footer-bottom container">
-    <p>&copy; 2026 Calex Kenya. All rights reserved.</p>
-    <div class="payment-badges">
-      <span class="pay-badge">M-Pesa Supported</span>
-    </div>
-  </div>
+  <p>&copy; 2026 Calex Kenya. Secured via Firebase. M-Pesa Supported.</p>
 </footer>
 
-<!-- ===== POP-UP MODALS ===== -->
-
-<!-- Login Modal -->
 <div class="modal-overlay" id="loginModal" onclick="closeModal('loginModal')">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-header">
-      <h2>Welcome to Calex</h2>
+      <h2 id="authModalTitle">Account Authentication</h2>
       <button class="modal-close" onclick="closeModal('loginModal')">&times;</button>
     </div>
     <div class="modal-body">
       <div class="form-group">
-        <label class="form-label">Phone Number or Email</label>
-        <input type="text" class="form-input" placeholder="e.g., 0712345678">
+        <label class="form-label">Email Address</label>
+        <input type="email" id="authEmail" class="form-input" placeholder="name@domain.com">
       </div>
       <div class="form-group">
         <label class="form-label">Password</label>
-        <input type="password" class="form-input" placeholder="••••••••">
+        <input type="password" id="authPassword" class="form-input" placeholder="••••••••">
       </div>
-      <button class="btn btn-green" style="width:100%; justify-content:center; margin-top:8px;" onclick="showToast('Login simulated successfully!')">Log In</button>
+      <button class="btn btn-green" style="width:100%; justify-content:center; margin-top:8px;" id="authPrimaryBtn">Log In</button>
+      <p style="font-size:12px; text-align:center; margin-top:12px; color:var(--text2); cursor:pointer;" id="authToggleBtn">Don't have an account? Sign Up</p>
     </div>
   </div>
 </div>
 
-<!-- Sell Modal -->
 <div class="modal-overlay" id="sellModal" onclick="closeModal('sellModal')">
   <div class="modal" onclick="event.stopPropagation()">
     <div class="modal-header">
-      <h2>List a New Item</h2>
+      <h2>List an Item Globally</h2>
       <button class="modal-close" onclick="closeModal('sellModal')">&times;</button>
     </div>
     <div class="modal-body">
-      <div class="upload-zone" onclick="alert('Photo upload simulation')">
-        <span>📸</span>
-        <p>Click to upload product images</p>
-      </div>
       <div class="form-group">
         <label class="form-label">Item Title</label>
-        <input type="text" class="form-input" placeholder="What are you selling?">
+        <input type="text" id="prodTitle" class="form-input" placeholder="What are you selling?">
       </div>
       <div class="form-group">
         <label class="form-label">Category</label>
-        <select class="form-select">
-          <option>Tech</option>
-          <option>Clothing</option>
-          <option>Food</option>
-          <option>Cars</option>
+        <select id="prodCategory" class="form-select">
+          <option value="tech">📱 Tech</option>
+          <option value="clothing">👗 Clothing</option>
+          <option value="food">🍲 Food</option>
+          <option value="cars">🚗 Cars</option>
         </select>
       </div>
       <div class="form-group">
         <label class="form-label">Price (KES)</label>
-        <input type="number" class="form-input" placeholder="e.g., 3500">
+        <input type="number" id="prodPrice" class="form-input" placeholder="e.g., 3500">
       </div>
-      <button class="btn btn-green" style="width:100%; justify-content:center;" onclick="showToast('Listing submitted!')">Submit Listing</button>
+      <div class="form-group">
+        <label class="form-label">Your WhatsApp Phone Number</label>
+        <input type="text" id="prodPhone" class="form-input" placeholder="e.g., 0712345678">
+      </div>
+      <div class="form-group">
+        <label class="form-label">Brief Description</label>
+        <input type="text" id="prodDesc" class="form-input" placeholder="Condition, location, size...">
+      </div>
+      <button class="btn btn-green" style="width:100%; justify-content:center;" id="submitProductBtn">Submit to Marketplace</button>
     </div>
   </div>
 </div>
 
-<!-- Product Detail Modal -->
-<div class="modal-overlay" id="productModal" onclick="closeModal('productModal')">
-  <div class="modal" onclick="event.stopPropagation()">
-    <div class="modal-header">
-      <h2 id="pModalTitle">Product Details</h2>
-      <button class="modal-close" onclick="closeModal('productModal')">&times;</button>
-    </div>
-    <div class="modal-body">
-      <div class="prod-modal-img" id="pModalImg">📦</div>
-      <div class="prod-modal-price" id="pModalPrice">KES 0</div>
-      <p id="pModalDesc" style="font-size:14px; color:var(--text2); margin-bottom:16px; line-height:1.5;"></p>
-      <div class="prod-modal-seller">
-        <div class="seller-mini-avatar">👤</div>
-        <div>
-          <div style="font-size:13px; font-weight:600;" id="pModalSeller">Seller Name</div>
-          <div style="font-size:11px; color:var(--text3);">Verified Merchant</div>
-        </div>
-      </div>
-      <button class="btn btn-green" style="width:100%; justify-content:center;" onclick="closeModal('productModal'); alert('Opening chat link...')">Inquire via WhatsApp</button>
-    </div>
-  </div>
-</div>
-
-<!-- ===== TOAST ALERT FEEDBACK ===== -->
 <div class="toast" id="toastAlert">Success!</div>
 
-<!-- ===== MOBILE BOTTOM NAVIGATION ===== -->
 <div class="mobile-nav">
-  <div class="mob-nav-item active" onclick="scrollTo(0,0)">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-    <span>Home</span>
-  </div>
-  <div class="mob-sell-btn" onclick="openModal('sellModal')">
-    <div class="sell-circle">+</div>
-    <span>Sell</span>
-  </div>
-  <div class="mob-nav-item" onclick="openModal('loginModal')">
-    <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-    <span>Profile</span>
-  </div>
+  <button class="mob-nav-item active" onclick="window.scrollTo(0,0)"><span>Home</span></button>
+  <button class="mob-nav-item" onclick="openModal('sellModal')"><span>➕ Sell</span></button>
+  <button class="mob-nav-item" onclick="openModal('loginModal')"><span id="mobProfileText">Profile</span></button>
 </div>
 
-<!-- ===== INTERACTIVE JAVASCRIPT ===== -->
-<script>
-  // Function to open any modal
+<script type="module">
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-app.js";
+  import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-auth.js";
+  import { getFirestore, collection, addDoc, onSnapshot, query, orderBy } from "https://www.gstatic.com/firebasejs/10.8.1/firebase-firestore.js";
+
+  // Configuration injected directly from your Firebase Console
+  const firebaseConfig = {
+    apiKey: "AIzaSyD2UBuLBuDQadhoWuvNOMg75D-_L352BMs",
+    authDomain: "calex-40108.firebaseapp.com",
+    projectId: "calex-40108",
+    storageBucket: "calex-40108.firebasestorage.app",
+    messagingSenderId: "514769862231",
+    appId: "1:514769862231:web:15e042fd9f36f394ca2d12"
+  };
+
+  // Initialize Core Services
+  const app = initializeApp(firebaseConfig);
+  const auth = getAuth(app);
+  const db = getFirestore(app);
+
+  let currentUser = null;
+  let isSignUpMode = false;
+
+  // --- UI Modal Toggle Management ---
   function openModal(id) {
+    if (id === 'sellModal' && !currentUser) {
+      showToast("Please log in first to list items!");
+      openModal('loginModal');
+      return;
+    }
     document.getElementById(id).classList.add('open');
   }
 
-  // Function to close any modal
   function closeModal(id) {
     document.getElementById(id).classList.remove('open');
   }
 
-  // Handle product display modal click details
-  function openProduct(title, price, seller, description) {
-    document.getElementById('pModalTitle').innerText = title;
-    document.getElementById('pModalPrice').innerText = price;
-    document.getElementById('pModalSeller').innerText = seller;
-    document.getElementById('pModalDesc').innerText = description;
-    openModal('productModal');
-  }
-
-  // Simple feedback notification system
-  function showToast(message) {
+  function showToast(msg) {
     const toast = document.getElementById('toastAlert');
-    toast.innerText = message;
-    toast.classList.add('show', 'success');
-    setTimeout(() => {
-      toast.classList.remove('show');
-    }, 3000);
-    // Close active modal helper
-    document.querySelectorAll('.modal-overlay').forEach(m => m.classList.remove('open'));
+    toast.innerText = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 3000);
   }
 
-  // Simulated layout search filter logic
-  function doSearch() {
-    let query = document.getElementById('searchInput').value.toLowerCase();
-    if(query === "") return;
-    showToast("Searching items matching: " + query);
-  }
+  window.openModal = openModal;
+  window.closeModal = closeModal;
 
-  // Category interface filtering
-  function filterCat(category, element) {
-    if(element) {
-      document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
-      element.classList.add('active');
+  // --- Authentication Interface Switcher ---
+  const authToggleBtn = document.getElementById('authToggleBtn');
+  const authModalTitle = document.getElementById('authModalTitle');
+  const authPrimaryBtn = document.getElementById('authPrimaryBtn');
+
+  authToggleBtn.addEventListener('click', () => {
+    isSignUpMode = !isSignUpMode;
+    if (isSignUpMode) {
+      authModalTitle.innerText = "Create New Account";
+      authPrimaryBtn.innerText = "Register & Sign Up";
+      authToggleBtn.innerText = "Already have an account? Log In";
+    } else {
+      authModalTitle.innerText = "Account Authentication";
+      authPrimaryBtn.innerText = "Log In";
+      authToggleBtn.innerText = "Don't have an account? Sign Up";
     }
-    showToast("Filtering storefront view for: " + category.toUpperCase());
-  }
+  });
+
+  // --- Trigger Authentication Actions ---
+  authPrimaryBtn.addEventListener('click', async () => {
+    const email = document.getElementById('authEmail').value.trim();
+    const password = document.getElementById('authPassword').value;
+
+    if (!email || !password) {
+      alert("Please fill out all auth input parameters.");
+      return;
+    }
+
+    try {
+      if (isSignUpMode) {
+        await createUserWithEmailAndPassword(auth, email, password);
+        showToast("Account created successfully!");
+      } else {
+        await signInWithEmailAndPassword(auth, email, password);
+        showToast("Welcome back!");
+      }
+      closeModal('loginModal');
+    } catch (err) {
+      alert("Auth Failure: " + err.message);
+    }
+  });
+
+  // Track User State changes
+  onAuthStateChanged(auth, (user) => {
+    currentUser = user;
+    const loginHeaderBtn = document.getElementById('loginHeaderBtn');
+    const mobProfileText = document.getElementById('mobProfileText');
+
+    if (user) {
+      loginHeaderBtn.innerText = "Log Out";
+      mobProfileText.innerText = "Log Out";
+      loginHeaderBtn.onclick = () => signOut(auth).then(() => showToast("Logged out!"));
+      mobProfileText.parentElement.onclick = () => signOut(auth).then(() => showToast("Logged out!"));
+    } else {
+      loginHeaderBtn.innerText = "Log In";
+      mobProfileText.innerText = "Profile";
+      loginHeaderBtn.onclick = () => openModal('loginModal');
+      mobProfileText.parentElement.onclick = () => openModal('loginModal');
+    }
+  });
+
+  // --- Push Form Data to Firestore Database ---
+  const submitProductBtn = document.getElementById('submitProductBtn');
+  submitProductBtn.addEventListener('click', async () => {
+    const title = document.getElementById('prodTitle').value.trim();
+    const category = document.getElementById('prodCategory').value;
+    const price = document.getElementById('prodPrice').value.trim();
+    const phone = document.getElementById('prodPhone').value.trim();
+    const desc = document.getElementById('prodDesc').value.trim();
+
+    if (!title || !price || !phone) {
+      alert("Title, Price, and Phone values are highly strict mandatory variables.");
+      return;
+    }
+
+    try {
+      await addDoc(collection(db, "products"), {
+        title: title,
+        category: category,
+        price: Number(price),
+        phone: phone,
+        description: desc,
+        sellerUid: currentUser.uid,
+        createdAt: new Date().getTime()
+      });
+
+      showToast("Listing synchronized successfully!");
+      closeModal('sellModal');
+      
+      // Clear inputs
+      document.getElementById('prodTitle').value = "";
+      document.getElementById('prodPrice').value = "";
+      document.getElementById('prodPhone').value = "";
+      document.getElementById('prodDesc').value = "";
+    } catch (err) {
+      alert("Cloud database structural rejection: " + err.message);
+    }
+  });
+
+  // --- Pull Dynamic Items Live Streams ---
+  const productsGrid = document.getElementById('productsGrid');
+  const q = query(collection(db, "products"), orderBy("createdAt", "desc"));
+
+  onSnapshot(q, (snapshot) => {
+    productsGrid.innerHTML = "";
+    
+    if (snapshot.empty) {
+      productsGrid.innerHTML = `<p style="color:var(--text3); grid-column: 1/-1; text-align:center;">No active listings on the server yet. Click 'Sell Now' to populate.</p>`;
+      return;
+    }
+
+    snapshot.forEach((doc) => {
+      const data = doc.data();
+      
+      let icon = "🛒";
+      if(data.category === 'tech') icon = "📱";
+      if(data.category === 'clothing') icon = "👟";
+      if(data.category === 'food') icon = "🍲";
+      if(data.category === 'cars') icon = "🚗";
+
+      let cleanPhone = data.phone;
+      if (cleanPhone.startsWith('0')) {
+        cleanPhone = '254' + cleanPhone.substring(1);
+      } else if (cleanPhone.startsWith('+')) {
+        cleanPhone = cleanPhone.substring(1);
+      }
+
+      const waLink = `https://wa.me/${cleanPhone}?text=Hi,%20I'm%20interested%20in%20your%20listing:%20${encodeURIComponent(data.title)}%20on%20Calex.`;
+
+      const card = document.createElement('div');
+      card.className = "prod-card";
+      card.innerHTML = `
+        <div class="prod-img">${icon}</div>
+        <div class="prod-info">
+          <div class="prod-name">${data.title}</div>
+          <div class="prod-meta" title="${data.description || ''}">${data.description ? data.description : 'Verified Listing'}</div>
+          <div class="prod-price">KES ${Number(data.price).toLocaleString()}</div>
+          <div class="prod-actions">
+            <a href="${waLink}" target="_blank" class="btn btn-wa">WhatsApp</a>
+            <a href="tel:${data.phone}" class="btn btn-call">Call</a>
+          </div>
+        </div>
+      `;
+      productsGrid.appendChild(card);
+    });
+  });
 </script>
 </body>
 </html>
